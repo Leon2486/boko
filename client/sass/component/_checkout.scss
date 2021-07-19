@@ -1,0 +1,33 @@
+.checkout {
+  &__confirm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__items {
+    max-height: 50rem;
+    overflow: auto;
+    padding: 2rem;
+  }
+
+  &__empty {
+    width: 50%;
+    margin: 10rem auto;
+    text-align: center;
+  }
+
+  &__payment {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+
+    label {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      padding: 0.5rem;
+    }
+  }
+}

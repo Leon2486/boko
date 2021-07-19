@@ -1,0 +1,14 @@
+@mixin textOverflow {
+  width: 100%;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1;
+}
+
+@mixin responsive($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}

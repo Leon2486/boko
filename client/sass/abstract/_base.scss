@@ -1,0 +1,40 @@
+$color-primary: #bf0000;
+$color-primary-dark: #8b0000;
+$color-grey-light: #eee;
+$color-grey-light2: #bbb;
+$color-grey-dark: #333;
+$color-grey-dark2: #666;
+$color-dark: #000;
+$color-white: #fff;
+
+$container-width: 104rem;
+$carousel-width: 90rem;
+$carousel-gap: 3rem;
+
+$fontsize-default: 2rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+
+  @include responsive(50em) {
+    font-size: 50%;
+  }
+}
+
+.container {
+  position: relative;
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hidden {
+  display: none;
+}

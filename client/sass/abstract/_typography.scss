@@ -1,0 +1,46 @@
+.heading2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: $color-grey-dark;
+
+  @include responsive(56.25em) {
+    font-size: 2rem;
+  }
+
+  &--link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.heading3 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: $color-grey-dark2;
+}
+
+.text {
+  font-size: 2rem;
+  font-weight: 300;
+  color: $color-grey-dark;
+
+  &--link {
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.title {
+  @include textOverflow;
+}
+
+.author {
+  @include textOverflow;
+}

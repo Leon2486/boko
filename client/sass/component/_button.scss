@@ -1,0 +1,43 @@
+.btn {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background-color: $color-grey-dark2;
+  border: 1px solid $color-grey-dark2;
+  color: $color-white;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-grey-dark2;
+  }
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--primary {
+  background-color: $color-primary;
+  border: 1px solid $color-primary;
+
+  &:active {
+    background-color: $color-primary-dark;
+    color: $color-white;
+  }
+}
+
+.btn--secondary {
+  border: 2px solid $color-dark;
+  background-color: $color-dark;
+  text-decoration: underline;
+  width: 100%;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-dark;
+  }
+}

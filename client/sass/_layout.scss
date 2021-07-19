@@ -1,0 +1,88 @@
+main {
+  min-height: 80vh;
+}
+
+.navbar {
+  border-bottom: 1px solid $color-grey-light;
+  box-shadow: 0 0 3rem rgba($color-dark, $alpha: 0.2);
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include responsive(37.5em) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.searchPage {
+  display: grid;
+  grid-template-columns: repeat(2, 45%);
+  grid-column-gap: 5rem;
+  justify-content: center;
+  justify-items: center;
+
+  @include responsive(62.5em) {
+    grid-template-columns: 60%;
+  }
+
+  @include responsive(50em) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  background-color: $color-grey-light;
+  height: 20vh;
+  display: block;
+  margin-top: auto;
+
+  &__copyright {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    padding: 3rem 0;
+  }
+}
+
+.showitem {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding: 3rem;
+
+  @include responsive(56.25em) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  @include responsive(37.5em) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+
+.checkout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 5rem;
+  padding: 2rem;
+
+  @include responsive(56.25em) {
+    grid-template-columns: 70%;
+    justify-content: center;
+  }
+}
+
+.mybook {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 3rem;
+  justify-items: center;
+}

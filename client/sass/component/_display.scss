@@ -1,0 +1,76 @@
+.display {
+  position: relative;
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__itembox {
+    width: 100%;
+    overflow: auto;
+    padding: 2rem 0;
+  }
+
+  &__carousel {
+    display: flex;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    max-width: $carousel-width;
+    transition: all 0.5s;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 5%;
+    padding: 1rem;
+    font-size: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    max-width: calc(#{$carousel-width} / 5);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  &__item-imgbox {
+    width: calc(#{$carousel-width} / 5);
+  }
+
+  &__item-img {
+    object-fit: contain;
+    object-position: center bottom;
+    max-width: calc(#{$carousel-width} / 5);
+    transition: all 0.2s;
+  }
+
+  &__link:hover &__item-img {
+    filter: brightness(0.8);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-dark;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > * {
+      margin-bottom: 1rem;
+    }
+  }
+}
