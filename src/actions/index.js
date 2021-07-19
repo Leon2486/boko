@@ -47,12 +47,15 @@ export const removeCart = (itemNumber) => {
 export const initCart = () => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const doc = await firebase.firestore().collection("users").doc(userId).get();
-  const { cart } = doc.data();
 
-  dispatch({
-    type: "INIT_CART",
-    payload: cart,
-  });
+  if (doc.data().cart) {
+    const { cart } = doc.data();
+
+    dispatch({
+      type: "INIT_CART",
+      payload: cart,
+    });
+  }
 };
 
 export const emptyCart = () => {
