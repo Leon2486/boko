@@ -3,7 +3,18 @@ import { connect } from "react-redux";
 
 import { addCart, removeCart } from "../../actions";
 
-function cartButton({ Item, cartItem, addCart, removeCart, mybooks }) {
+function cartButton({
+  Item,
+  cartItem,
+  addCart,
+  removeCart,
+  mybooks,
+  isSignedIn,
+}) {
+  if (!isSignedIn) {
+    return null;
+  }
+
   if (cartItem[Item.itemNumber]) {
     return (
       <button
@@ -34,6 +45,7 @@ const mapStateToProps = (state) => {
   return {
     cartItem: state.cart.cartItem,
     mybooks: state.books.mybooks,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 

@@ -6,7 +6,7 @@ import CartButton from "./CartButton";
 import { addCart } from "../../actions";
 
 function Show(props) {
-  const { item, mybooks, addCart } = props;
+  const { item, mybooks, addCart, isSignedIn } = props;
   const [itemExpand, setItemExpand] = useState(false);
   const [descriptionRef, setDescriptionRef] = useState(null);
   const [showArrow, setShowArrow] = useState(true);
@@ -29,6 +29,14 @@ function Show(props) {
   };
 
   const renderPurchase = () => {
+    if (!isSignedIn) {
+      return (
+        <div className="showitem__read">
+          <h2 className="heading2 mb-md">Sign In to purchase</h2>
+        </div>
+      );
+    }
+
     if (mybooks[item.itemNumber]) {
       return (
         <div className="showitem__read">
@@ -84,12 +92,6 @@ function Show(props) {
 
           {renderSeemore()}
         </div>
-        {/* <div className="showitem__add">
-          <h2 className="heading2 ">purchase</h2>
-          <h3 className="heading3 ">your price &yen; {item.itemPrice}</h3>
-          <button className="btn btn--full btn--primary">purchase</button>
-          <CartButton Item={item} />
-        </div> */}
         {renderPurchase()}
       </div>
     );
@@ -99,7 +101,7 @@ function Show(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { mybooks: state.books.mybooks };
+  return { mybooks: state.books.mybooks, isSignedIn: state.auth.isSignedIn };
 };
 
 export default connect(mapStateToProps, { addCart })(Show);
