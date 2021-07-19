@@ -66,9 +66,8 @@ export default function BooksDisplay(props) {
           </div>
         );
       });
-
-      return null;
     }
+    return null;
   };
 
   return (

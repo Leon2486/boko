@@ -90,12 +90,14 @@ export const fetchMyBook = () => async (dispatch, getState) => {
       .doc(userId)
       .get();
 
-    const { book } = mybook.data();
+    if (mybook.data().book) {
+      const { book } = mybook.data();
 
-    dispatch({
-      type: "STORE_MYBOOK",
-      payload: book,
-    });
+      dispatch({
+        type: "STORE_MYBOOK",
+        payload: book,
+      });
+    }
   } catch (e) {
     dispatch({
       type: "ERROR",
