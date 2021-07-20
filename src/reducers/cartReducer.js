@@ -1,6 +1,8 @@
 import _ from "lodash";
 
-export default (state = { showCart: false, cartItem: {} }, action) => {
+const INITIAL = { showCart: false, cartItem: {} };
+
+const cartReducer = (state = INITIAL, action) => {
   switch (action.type) {
     case "OPEN_CART":
       return (state = { ...state, showCart: !state.showCart });
@@ -33,3 +35,5 @@ export default (state = { showCart: false, cartItem: {} }, action) => {
       return state;
   }
 };
+
+export default cartReducer;

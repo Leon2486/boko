@@ -11,6 +11,7 @@ function ShowSearch(props) {
 
   useEffect(() => {
     fetchSearch(title);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   if (loading) {

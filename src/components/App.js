@@ -14,6 +14,7 @@ import CheckOut from "./pages/CheckOut";
 import Mybook from "./pages/Mybook";
 import ErrorPage from "./pages/ErrorPage";
 import Footer from "./footer/Footer";
+import Modal from "./main/Modal";
 
 function App({ currentUser, initCart, fetchMyBook }) {
   const { isSignedIn } = currentUser;
@@ -23,6 +24,7 @@ function App({ currentUser, initCart, fetchMyBook }) {
       initCart();
       fetchMyBook();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return (
@@ -38,6 +40,7 @@ function App({ currentUser, initCart, fetchMyBook }) {
           <Route path="/mybook" exact component={Mybook} />
           <Route path="/error" exact component={ErrorPage} />
         </main>
+        <Modal />
         <Footer />
       </Router>
     </div>

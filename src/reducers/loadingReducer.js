@@ -1,4 +1,4 @@
-export default function (state = false, action) {
+const loadingReducer = function (state = false, action) {
   switch (action.type) {
     case "LOADING_START":
       return true;
@@ -7,4 +7,6 @@ export default function (state = false, action) {
     default:
       return state;
   }
-}
+};
+
+export default loadingReducer;

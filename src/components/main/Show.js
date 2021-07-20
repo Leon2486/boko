@@ -17,6 +17,7 @@ function Show(props) {
     if (descriptionRef && descriptionRef.scrollHeight < 150) {
       setShowArrow(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   const onExpandClick = () => {

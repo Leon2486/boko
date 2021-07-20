@@ -1,4 +1,4 @@
-export default (state = null, action) => {
+const errorReducer = (state = null, action) => {
   switch (action.type) {
     case "ERROR":
       return { ...state, message: action.payload };
@@ -6,3 +6,5 @@ export default (state = null, action) => {
       return state;
   }
 };
+
+export default errorReducer;

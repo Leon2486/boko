@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addCart, removeCart } from "../../actions";
+import { addCart, removeCart, openModal } from "../../actions";
 
 function cartButton({
   Item,
@@ -10,35 +10,42 @@ function cartButton({
   removeCart,
   mybooks,
   isSignedIn,
+  openModal,
 }) {
-  if (!isSignedIn) {
-    return null;
-  }
+  const renderButton = () => {
+    if (!isSignedIn) {
+      return null;
+    }
 
-  if (cartItem[Item.itemNumber]) {
+    if (cartItem[Item.itemNumber]) {
+      return (
+        <button
+          className="btn btn--full"
+          onClick={() => {
+            removeCart(Item.itemNumber);
+            openModal("item removed from cart");
+          }}
+        >
+          remove
+        </button>
+      );
+    } else if (mybooks[Item.itemNumber]) {
+      return <button className="btn btn--primary">start reading</button>;
+    }
     return (
       <button
         className="btn btn--full"
         onClick={() => {
-          removeCart(Item.itemNumber);
+          addCart(Item);
+          openModal("item add to cart");
         }}
       >
-        remove
+        add to cart
       </button>
     );
-  } else if (mybooks[Item.itemNumber]) {
-    return <button className="btn btn--primary">start reading</button>;
-  }
-  return (
-    <button
-      className="btn btn--full"
-      onClick={() => {
-        addCart(Item);
-      }}
-    >
-      add to cart
-    </button>
-  );
+  };
+
+  return <div>{renderButton()}</div>;
 }
 
 const mapStateToProps = (state) => {
@@ -49,4 +56,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addCart, removeCart })(cartButton);
+export default connect(mapStateToProps, { addCart, removeCart, openModal })(
+  cartButton
+);

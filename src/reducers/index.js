@@ -4,6 +4,7 @@ import bookReducer from "./bookReducer";
 import authReducer from "./authReducer";
 import errorReducer from "./errorReducer";
 import loadingReducer from "./loadingReducer";
+import modalReducer from "./modalReducer";
 
 export default combineReducers({
   cart: cartReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   auth: authReducer,
   error: errorReducer,
   loading: loadingReducer,
+  modal: modalReducer,
 });

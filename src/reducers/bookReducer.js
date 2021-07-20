@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-export default (state = { genre: [], mybooks: {}, list: [] }, action) => {
+const bookReducer = (state = { genre: [], mybooks: {}, list: [] }, action) => {
   switch (action.type) {
     case "FETCH_SEARCH":
       return { ...state, list: action.payload };
@@ -24,3 +24,5 @@ export default (state = { genre: [], mybooks: {}, list: [] }, action) => {
       return state;
   }
 };
+
+export default bookReducer;

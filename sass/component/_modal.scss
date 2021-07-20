@@ -1,0 +1,14 @@
+#modal {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.modal {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: rgba($color-primary, 0.8);
+  border-radius: 3px;
+  color: $color-white;
+  box-shadow: 0 0.2rem 1rem rgba($color-primary, 0.4);
+}

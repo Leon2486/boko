@@ -16,6 +16,9 @@ html {
   margin: 0 auto;
   padding: 0 2rem; }
 
+body {
+  position: relative; }
+
 .hidden {
   display: none; }
 
@@ -598,6 +601,19 @@ html {
   justify-content: center; }
   .loader div {
     color: #bf0000; }
+
+#modal {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem; }
+
+.modal {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: rgba(191, 0, 0, 0.8);
+  border-radius: 3px;
+  color: #fff;
+  box-shadow: 0 0.2rem 1rem rgba(191, 0, 0, 0.4); }
 
 main {
   min-height: 80vh; }

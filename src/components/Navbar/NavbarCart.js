@@ -30,7 +30,7 @@ function NavbarCart({
         { merge: true }
       );
     }
-  }, [cartItemObject]);
+  }, [cartItemObject, userId]);
 
   const renderCart = () => {
     return cartItem.map((item) => {
@@ -42,19 +42,21 @@ function NavbarCart({
     });
   };
 
-  const renderPrice = () => {
-    let subTotal = 0;
-    for (let item of cartItem) {
-      subTotal += item.itemPrice;
-    }
-    return (
-      <React.Fragment>
-        <h3 className="cart__totalPrice">subtotal &yen; {subTotal}</h3>
-      </React.Fragment>
-    );
-  };
+  const totalPrice = useMemo(() => {
+    const renderPrice = () => {
+      let subTotal = 0;
+      for (let item of cartItem) {
+        subTotal += item.itemPrice;
+      }
+      return (
+        <React.Fragment>
+          <h3 className="cart__totalPrice">subtotal &yen; {subTotal}</h3>
+        </React.Fragment>
+      );
+    };
 
-  const totalPrice = useMemo(() => renderPrice(cartItem), [cartItem]);
+    renderPrice(cartItem);
+  }, [cartItem]);
 
   if (cartItem.length) {
     return (

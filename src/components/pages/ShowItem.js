@@ -10,6 +10,7 @@ function ShowItem(props) {
 
   useEffect(() => {
     fetchEBook(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

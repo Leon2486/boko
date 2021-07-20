@@ -16,6 +16,22 @@ const loadingFinish = () => {
   };
 };
 
+////////modal
+
+export const openModal = (message) => {
+  return {
+    type: "OPEN_MODAL",
+    payload: message,
+  };
+};
+
+export const closeModal = (message) => {
+  return {
+    type: "CLOSE_MODAL",
+    payload: message,
+  };
+};
+
 ///////////////////////////////////////////cart
 
 export const toggleCart = () => {

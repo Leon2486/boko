@@ -1,21 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import firebase from "../firebase";
 import history from "../../history";
 
 import Itembox from "../main/Itembox";
 import { emptyCart, bookPurchase, fetchMyBook } from "../../actions";
 
 function CheckOut(props) {
-  const {
-    cartItem,
-    userId,
-    emptyCart,
-    cartItemObject,
-    bookPurchase,
-    fetchMyBook,
-  } = props;
+  const { cartItem, emptyCart, cartItemObject, bookPurchase } = props;
 
   const renderItem = () => {
     return cartItem.map((item) => {

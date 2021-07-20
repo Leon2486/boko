@@ -9,6 +9,7 @@ function NavbarDetail(props) {
 
   useEffect(() => {
     fetchGenre(101901);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderGenres = () => {
