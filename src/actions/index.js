@@ -46,18 +46,32 @@ export const closeCart = () => {
   };
 };
 
-export const addCart = (item) => {
-  return {
+export const addCart = (item) => async (dispatch, getState) => {
+  dispatch({
     type: "ADD_CART",
     payload: item,
-  };
+  });
+
+  const { userId } = getState().auth;
+  const { cartItem } = getState().cart;
+
+  await firebase.firestore().collection("users").doc(userId).update({
+    cart: cartItem,
+  });
 };
 
-export const removeCart = (itemNumber) => {
-  return {
+export const removeCart = (itemNumber) => async (dispatch, getState) => {
+  dispatch({
     type: "REMOVE_CART",
     payload: itemNumber,
-  };
+  });
+
+  const { userId } = getState().auth;
+  const { cartItem } = getState().cart;
+
+  await firebase.firestore().collection("users").doc(userId).update({
+    cart: cartItem,
+  });
 };
 
 export const initCart = () => async (dispatch, getState) => {

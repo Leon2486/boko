@@ -14,6 +14,19 @@
   }
 }
 
+.btn--loading {
+  display: flex;
+  justify-content: center;
+
+  div {
+    color: $color-white;
+  }
+
+  &:hover div {
+    color: $color-primary;
+  }
+}
+
 .btn--full {
   width: 100%;
 }

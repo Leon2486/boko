@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { addCart, removeCart, openModal } from "../../actions";
 
@@ -30,7 +31,9 @@ function cartButton({
         </button>
       );
     } else if (mybooks[Item.itemNumber]) {
-      return <button className="btn btn--primary">start reading</button>;
+      return (
+        <button className="btn btn--primary btn--full">start reading</button>
+      );
     }
     return (
       <button

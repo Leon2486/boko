@@ -10,7 +10,7 @@ function Modal({ modal, closeModal, cart }) {
       if (modal.open) {
         closeModal();
       }
-    }, 3000);
+    }, 4000);
     return () => {
       clearTimeout(modalControl);
     };

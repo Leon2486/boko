@@ -24,9 +24,9 @@ function CheckOut(props) {
       <form className="checkout__payment mb-lg">
         <h2 className="heading2 mb-lg">payment confirm</h2>
         <label htmlFor="" className="checkout__info">
-          your card number
+          your card number (please don't give me the real one)
         </label>
-        <input type="text" />
+        <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" />
       </form>
     );
   };

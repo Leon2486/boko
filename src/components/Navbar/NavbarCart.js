@@ -1,36 +1,18 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import firebase from "../firebase";
+
 import history from "../../history";
 
 import Itembox from "../main/Itembox";
 import { toggleCart, closeCart } from "../../actions";
 
-function NavbarCart({
-  showCart,
-  toggleCart,
-  cartItem,
-  userId,
-  cartItemObject,
-  closeCart,
-}) {
+function NavbarCart({ showCart, toggleCart, cartItem, closeCart }) {
   const toggle = showCart ? "cart-open" : "collapsed";
 
   history.listen(() => {
     if (showCart) closeCart();
   });
-
-  useEffect(() => {
-    if (userId) {
-      firebase.firestore().collection("users").doc(userId).set(
-        {
-          cart: cartItemObject,
-        },
-        { merge: true }
-      );
-    }
-  }, [cartItemObject, userId]);
 
   const renderCart = () => {
     return cartItem.map((item) => {
@@ -54,8 +36,7 @@ function NavbarCart({
         </React.Fragment>
       );
     };
-
-    renderPrice(cartItem);
+    return renderPrice(cartItem);
   }, [cartItem]);
 
   if (cartItem.length) {
@@ -92,8 +73,6 @@ const mapStateToProps = (state) => {
   return {
     showCart: state.cart.showCart,
     cartItem: Object.values(state.cart.cartItem),
-    userId: state.auth.userId,
-    cartItemObject: state.cart.cartItem,
   };
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import CartButton from "../main/CartButton";
 
@@ -29,9 +30,22 @@ function Mybook(props) {
     }
   };
 
+  if (mybooks.length) {
+    return (
+      <div className="container">
+        <div className="mybook">{renderMyBook()}</div>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      <div className="mybook">{renderMyBook()}</div>
+      <div className="mybook--empty">
+        <h2 className="heading2 mb-lg">You don't have any book yet</h2>
+        <Link to="/" className="btn btn--primary">
+          check it out
+        </Link>
+      </div>
     </div>
   );
 }

@@ -142,6 +142,14 @@ body {
     background-color: #fff;
     color: #666; }
 
+.btn--loading {
+  display: flex;
+  justify-content: center; }
+  .btn--loading div {
+    color: #fff; }
+  .btn--loading:hover div {
+    color: #bf0000; }
+
 .btn--full {
   width: 100%; }
 
@@ -608,12 +616,28 @@ body {
   left: 2rem; }
 
 .modal {
-  padding: 1rem 2rem;
   font-size: 1.5rem;
-  background-color: rgba(191, 0, 0, 0.8);
+  padding: 1rem 2rem;
   border-radius: 3px;
   color: #fff;
-  box-shadow: 0 0.2rem 1rem rgba(191, 0, 0, 0.4); }
+  background-color: rgba(191, 0, 0, 0.8);
+  box-shadow: 0 0.2rem 1rem rgba(191, 0, 0, 0.4);
+  opacity: 0;
+  animation: modal 4s; }
+
+@keyframes modal {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem); }
+  10% {
+    opacity: 1;
+    transform: translateY(0); }
+  90% {
+    opacity: 1;
+    transform: translateY(0); }
+  100% {
+    opacity: 0;
+    transform: translateY(1rem); } }
 
 main {
   min-height: 80vh; }
@@ -686,3 +710,7 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 3rem;
   justify-items: center; }
+
+.mybook--empty {
+  padding: 3rem;
+  text-align: center; }
