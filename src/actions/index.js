@@ -55,9 +55,18 @@ export const addCart = (item) => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const { cartItem } = getState().cart;
 
-  await firebase.firestore().collection("users").doc(userId).update({
-    cart: cartItem,
-  });
+  const userRef = await firebase.firestore().collection("users").doc(userId);
+
+  const snapshot = await userRef.get();
+
+  if (snapshot.exists) {
+    userRef.update({
+      cart: cartItem,
+    });
+  }
+  if (!snapshot.exists) {
+    userRef.set({ cart: cartItem }, { merge: true });
+  }
 };
 
 export const removeCart = (itemNumber) => async (dispatch, getState) => {
@@ -78,7 +87,7 @@ export const initCart = () => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const doc = await firebase.firestore().collection("users").doc(userId).get();
 
-  if (doc.data().cart) {
+  if (doc.data() && doc.data().cart) {
     const { cart } = doc.data();
 
     dispatch({
@@ -120,7 +129,7 @@ export const fetchMyBook = () => async (dispatch, getState) => {
       .doc(userId)
       .get();
 
-    if (mybook.data().book) {
+    if (mybook.data() && mybook.data().book) {
       const { book } = mybook.data();
 
       dispatch({
