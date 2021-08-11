@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { fetchEBook } from "../../actions";
+import { fetchEBook } from "../../store/book-action-creator";
 import Show from "../main/Show";
 
 function ShowItem(props) {
-  const { fetchEBook, item } = props;
+  const dispatch = useDispatch();
   const { id } = props.match.params;
+  const item = useSelector((state) => state.books.list[id]);
 
   useEffect(() => {
-    fetchEBook(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    dispatch(fetchEBook(id));
+  }, [id, dispatch]);
 
   return (
     <div className="container">
@@ -20,8 +20,4 @@ function ShowItem(props) {
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { item: state.books.list[ownProps.match.params.id] };
-};
-
-export default connect(mapStateToProps, { fetchEBook })(ShowItem);
+export default ShowItem;

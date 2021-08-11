@@ -621,9 +621,29 @@ body {
   border-radius: 3px;
   color: #fff;
   background-color: rgba(191, 0, 0, 0.8);
-  box-shadow: 0 0.2rem 1rem rgba(191, 0, 0, 0.4);
-  opacity: 0;
-  animation: modal 4s; }
+  box-shadow: 0 0.2rem 1rem rgba(191, 0, 0, 0.4); }
+
+.modalOpen {
+  animation: modalOpen 1s; }
+
+.modalClose {
+  animation: modalClose 1s; }
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); }
+  50% {
+    transform: translateY(0); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+
+@keyframes modalClose {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 @keyframes modal {
   0% {

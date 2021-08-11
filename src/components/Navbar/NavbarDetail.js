@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchGenre } from "../../actions";
+import { fetchGenre } from "../../store/book-action-creator";
 
 function NavbarDetail(props) {
-  const { fetchGenre, genres } = props;
+  const dispatch = useDispatch();
+  const genres = useSelector((state) => state.books.genre);
 
   useEffect(() => {
-    fetchGenre(101901);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchGenre(101901));
+  }, [dispatch]);
 
   const renderGenres = () => {
     if (genres) {
@@ -37,8 +37,4 @@ function NavbarDetail(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { genres: state.books.genre };
-};
-
-export default connect(mapStateToProps, { fetchGenre })(NavbarDetail);
+export default NavbarDetail;

@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { removeCart } from "../../actions";
+import { removeItemFromCart } from "../../store/cart-action-creator";
 
 function Itembox(props) {
-  const { item, removeCart } = props;
+  const dispatch = useDispatch();
+  const { item } = props;
 
   const onRemoveClick = (itemNumber) => {
-    removeCart(itemNumber);
+    dispatch(removeItemFromCart(itemNumber));
   };
 
   return (
@@ -33,4 +34,4 @@ function Itembox(props) {
   );
 }
 
-export default connect(null, { removeCart })(Itembox);
+export default Itembox;

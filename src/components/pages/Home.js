@@ -1,19 +1,26 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import BookDisplay from "../main/BooksDisplay";
-import { fetchEBooks, addCart, removeCart } from "../../actions";
+import { fetchEBooks } from "../../store/book-action-creator";
+import {
+  addItemToCart,
+  removeItemFromCart,
+} from "../../store/cart-action-creator";
 import Loader from "../main/Loader";
 
 function Home(props) {
-  const { fetchEBooks, books, addCart, removeCart, cartItem, loading } = props;
+  const dispatch = useDispatch();
+  //const { fetchEBooks, books, addCart, removeCart, cartItem, loading } = props;
+  const books = useSelector((state) => Object.values(state.books.list));
+  const cartItem = useSelector((state) => state.cart.cartItem);
+  const bookLoading = useSelector((state) => state.books.loading);
 
   useEffect(() => {
-    fetchEBooks(101901005);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchEBooks(101901005));
+  }, [dispatch]);
 
-  if (loading) {
+  if (bookLoading) {
     return <Loader />;
   }
 
@@ -23,10 +30,10 @@ function Home(props) {
         <BookDisplay
           books={books}
           title="best seller"
-          addCart={addCart}
+          addCart={addItemToCart}
           buttonText="add to cart"
           genreId={101901005}
-          removeCart={removeCart}
+          removeCart={removeItemFromCart}
           cartItem={cartItem}
         />
       </div>
@@ -36,16 +43,4 @@ function Home(props) {
   return null;
 }
 
-const mapStateToProps = (state) => {
-  return {
-    books: Object.values(state.books.list),
-    cartItem: state.cart.cartItem,
-    loading: state.loading,
-  };
-};
-
-export default connect(mapStateToProps, {
-  fetchEBooks,
-  addCart,
-  removeCart,
-})(Home);
+export default Home;

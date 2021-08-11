@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Router, Route } from "react-router-dom";
 import history from "../history";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { initCart, fetchMyBook } from "../actions";
+import { fetchMyBook } from "../store/book-action-creator";
+import { fetchCartData } from "../store/cart-action-creator";
 
 import Navbar from "./Navbar/Navbar";
 import Home from "./pages/Home";
@@ -16,16 +17,17 @@ import ErrorPage from "./pages/ErrorPage";
 import Footer from "./footer/Footer";
 import Modal from "./main/Modal";
 
-function App({ currentUser, initCart, fetchMyBook }) {
+function App() {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth);
   const { isSignedIn } = currentUser;
 
   useEffect(() => {
     if (isSignedIn) {
-      initCart();
-      fetchMyBook();
+      dispatch(fetchCartData());
+      dispatch(fetchMyBook());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
+  }, [currentUser, dispatch, isSignedIn]);
 
   return (
     <div>
@@ -47,8 +49,4 @@ function App({ currentUser, initCart, fetchMyBook }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { currentUser: state.auth };
-};
-
-export default connect(mapStateToProps, { initCart, fetchMyBook })(App);
+export default App;

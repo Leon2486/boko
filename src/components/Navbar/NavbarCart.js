@@ -1,17 +1,21 @@
 import React, { useMemo } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import history from "../../history";
 
 import Itembox from "../main/Itembox";
-import { toggleCart, closeCart } from "../../actions";
+import { cartActions } from "../../store/cartSlice";
 
-function NavbarCart({ showCart, toggleCart, cartItem, closeCart }) {
-  const toggle = showCart ? "cart-open" : "collapsed";
+function NavbarCart() {
+  const dispatch = useDispatch();
+  const showCart = useSelector((state) => state.cart.showCart);
+  const cartItem = useSelector((state) => Object.values(state.cart.cartItem));
+
+  const show = showCart ? "cart-open" : "collapsed";
 
   history.listen(() => {
-    if (showCart) closeCart();
+    if (showCart) dispatch(cartActions.closeCart());
   });
 
   const renderCart = () => {
@@ -41,7 +45,7 @@ function NavbarCart({ showCart, toggleCart, cartItem, closeCart }) {
 
   if (cartItem.length) {
     return (
-      <div className={`navbar__cart cart__filled ${toggle}`}>
+      <div className={`navbar__cart cart__filled ${show}`}>
         <div className="cart">
           <div className="cart__goods">{renderCart()}</div>
           <div className="cart__total">
@@ -58,10 +62,13 @@ function NavbarCart({ showCart, toggleCart, cartItem, closeCart }) {
     );
   } else {
     return (
-      <div className={`navbar__cart ${toggle}`}>
+      <div className={`navbar__cart ${show}`}>
         <h2 className="heading2 mb-sm">your cart is empty</h2>
         <p className="text mb-lg">there is no item in the cart currently</p>
-        <button className="btn" onClick={toggleCart}>
+        <button
+          className="btn"
+          onClick={() => dispatch(cartActions.closeCart())}
+        >
           continue shopping
         </button>
       </div>
@@ -69,11 +76,4 @@ function NavbarCart({ showCart, toggleCart, cartItem, closeCart }) {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    showCart: state.cart.showCart,
-    cartItem: Object.values(state.cart.cartItem),
-  };
-};
-
-export default connect(mapStateToProps, { toggleCart, closeCart })(NavbarCart);
+export default NavbarCart;

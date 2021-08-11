@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import history from "../../history";
 import CartButton from "./CartButton";
-import { addCart } from "../../actions";
+import { addItemToCart } from "../../store/cart-action-creator";
 
 function Show(props) {
-  const { item, mybooks, addCart, isSignedIn } = props;
+  const dispatch = useDispatch();
+  const mybooks = useSelector((state) => state.books.mybooks);
+  const isSignedIn = useSelector((state) => state.auth.isSignedIn);
+  const { item } = props;
+
   const [itemExpand, setItemExpand] = useState(false);
   const [descriptionRef, setDescriptionRef] = useState(null);
   const [showArrow, setShowArrow] = useState(true);
+
   const desExpand = itemExpand ? "expand" : "";
   const arrow = itemExpand ? "fa-arrow-up" : "fa-arrow-down";
 
@@ -17,15 +22,14 @@ function Show(props) {
     if (descriptionRef && descriptionRef.scrollHeight < 150) {
       setShowArrow(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item]);
+  }, [item, descriptionRef]);
 
   const onExpandClick = () => {
     setItemExpand(!itemExpand);
   };
 
   const onPurchaseClicked = () => {
-    addCart(item);
+    dispatch(addItemToCart(item));
     history.push("/checkout");
   };
 
@@ -66,7 +70,7 @@ function Show(props) {
       return (
         <div className={`showitem__seemore ${desExpand} mt-md`}>
           <span></span>
-          <i class={`fas ${arrow}`} onClick={onExpandClick}></i>
+          <i className={`fas ${arrow}`} onClick={onExpandClick}></i>
           <span></span>
         </div>
       );
@@ -101,8 +105,4 @@ function Show(props) {
   return <div class="ui active centered inline loader mt-lg"></div>;
 }
 
-const mapStateToProps = (state) => {
-  return { mybooks: state.books.mybooks, isSignedIn: state.auth.isSignedIn };
-};
-
-export default connect(mapStateToProps, { addCart })(Show);
+export default Show;

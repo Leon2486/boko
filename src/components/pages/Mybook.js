@@ -1,11 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import CartButton from "../main/CartButton";
 
-function Mybook(props) {
-  const { mybooks } = props;
+function Mybook() {
+  const mybooks = useSelector((state) => Object.values(state.books.mybooks));
 
   const renderMyBook = () => {
     if (mybooks) {
@@ -50,8 +50,4 @@ function Mybook(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { mybooks: Object.values(state.books.mybooks) };
-};
-
-export default connect(mapStateToProps)(Mybook);
+export default Mybook;

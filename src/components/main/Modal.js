@@ -1,30 +1,40 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+import CSSTransition from "react-transition-group/CSSTransition";
 
-import { connect } from "react-redux";
-import { closeModal } from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
+import { modalActions } from "../../store/modalSlice";
 
-function Modal({ modal, closeModal, cart }) {
+function Modal() {
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modal);
+
   useEffect(() => {
     const modalControl = setTimeout(() => {
-      if (modal.open) {
-        closeModal();
+      if (modal.show) {
+        dispatch(modalActions.closeModal());
       }
     }, 4000);
     return () => {
       clearTimeout(modalControl);
     };
-  }, [cart]);
+  }, [modal, dispatch]);
 
   const renderModal = () => {
-    if (modal.open) return <div className="modal">{modal.message}</div>;
+    return (
+      <CSSTransition
+        unmountOnExit
+        mountOnEnter
+        in={modal.show}
+        timeout={1000}
+        classNames={{ enterActive: "modalOpen", exitActive: "modalClose" }}
+      >
+        <div className="modal">{modal.message}</div>
+      </CSSTransition>
+    );
   };
 
   return ReactDOM.createPortal(renderModal(), document.querySelector("#modal"));
 }
 
-const mapStateToProps = (state) => {
-  return { modal: state.modal, cart: state.cart.cartItem };
-};
-
-export default connect(mapStateToProps, { closeModal })(Modal);
+export default Modal;

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import history from "../../history";
 
 function SearchBar() {
@@ -18,6 +17,7 @@ function SearchBar() {
         placeholder="search by author, title or series"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        required
       />
       <button className="search-icon">
         <i className="fas fa-search"></i>
@@ -26,4 +26,4 @@ function SearchBar() {
   );
 }
 
-export default connect(null)(SearchBar);
+export default SearchBar;

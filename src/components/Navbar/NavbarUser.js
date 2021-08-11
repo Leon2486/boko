@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import NavbarPopup from "./NavbarPopup";
-import { toggleCart } from "../../actions";
+import { cartActions } from "../../store/cartSlice";
 
-function NavbarUser({ toggleCart, onSignedOutClick, cartItemAmount }) {
+function NavbarUser({ onSignedOutClick }) {
   const [popUpDisplay, setPopUpDisplay] = useState(false);
+  const dispatch = useDispatch();
+  const cartItemAmount = useSelector(
+    (state) => Object.values(state.cart.cartItem).length
+  );
 
   useEffect(() => {
     const bodyOnClick = () => {
@@ -45,7 +49,7 @@ function NavbarUser({ toggleCart, onSignedOutClick, cartItemAmount }) {
   };
 
   const onCartClick = () => {
-    toggleCart();
+    dispatch(cartActions.toggleCart());
   };
 
   return (
@@ -68,11 +72,4 @@ function NavbarUser({ toggleCart, onSignedOutClick, cartItemAmount }) {
   );
 }
 
-const mapStateToProsp = (state) => {
-  if (state.cart.cartItem) {
-    return { cartItemAmount: Object.values(state.cart.cartItem).length };
-  }
-  return {};
-};
-
-export default connect(mapStateToProsp, { toggleCart })(NavbarUser);
+export default NavbarUser;

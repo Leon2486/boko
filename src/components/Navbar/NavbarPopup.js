@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 function NavbarPopup(props) {
   const userPopUpClass = () => {
@@ -29,8 +28,4 @@ function NavbarPopup(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { userId: state.auth.userId };
-};
-
-export default connect(mapStateToProps)(NavbarPopup);
+export default NavbarPopup;

@@ -1,13 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import history from "../../history";
 
 import Itembox from "../main/Itembox";
-import { emptyCart, bookPurchase, fetchMyBook } from "../../actions";
+import { bookPurchase } from "../../store/book-action-creator";
+import { cartActions } from "../../store/cartSlice";
 
-function CheckOut(props) {
-  const { cartItem, emptyCart, cartItemObject, bookPurchase } = props;
+function CheckOut() {
+  const dispatch = useDispatch();
+  const cartItemObject = useSelector((state) => state.cart.cartItem);
+  const cartItem = useSelector((state) => Object.values(state.cart.cartItem));
 
   const renderItem = () => {
     return cartItem.map((item) => {
@@ -44,8 +47,8 @@ function CheckOut(props) {
   };
 
   const onPurchaseClick = () => {
-    emptyCart();
-    bookPurchase(cartItemObject);
+    dispatch(cartActions.emptyCart());
+    dispatch(bookPurchase(cartItemObject));
 
     history.push("/");
   };
@@ -83,16 +86,5 @@ function CheckOut(props) {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    cartItem: Object.values(state.cart.cartItem),
-    cartItemObject: state.cart.cartItem,
-    userId: state.auth.userId,
-  };
-};
 
-export default connect(mapStateToProps, {
-  emptyCart,
-  bookPurchase,
-  fetchMyBook,
-})(CheckOut);
+export default CheckOut;

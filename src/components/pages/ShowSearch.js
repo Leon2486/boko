@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { fetchSearch } from "../../actions";
+import { fetchSearch } from "../../store/book-action-creator";
 import ShowList from "../main/ShowList";
 import Loader from "../main/Loader";
 
 function ShowSearch(props) {
-  const { fetchSearch, items, loading } = props;
+  const dispatch = useDispatch();
+  const items = useSelector((state) => Object.values(state.books.list));
   const title = new URLSearchParams(props.location.search).get("title");
+  const bookLoading = useSelector((state) => state.books.loading);
 
   useEffect(() => {
-    fetchSearch(title);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title]);
+    dispatch(fetchSearch(title));
+  }, [title, dispatch]);
 
-  if (loading) {
+  if (bookLoading) {
     return <Loader />;
   }
 
@@ -25,8 +26,4 @@ function ShowSearch(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { items: Object.values(state.books.list), loading: state.loading };
-};
-
-export default connect(mapStateToProps, { fetchSearch })(ShowSearch);
+export default ShowSearch;

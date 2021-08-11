@@ -1,20 +1,22 @@
 import React, { useEffect, Suspense } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { fetchEBooks } from "../../actions";
+import { fetchEBooks } from "../../store/book-action-creator";
 import ShowList from "../main/ShowList";
 import Loader from "../main/Loader";
 
 function Genre(props) {
+  const dispatch = useDispatch();
+
   const { id } = props.match.params;
-  const { fetchEBooks, items, loading } = props;
+  const items = useSelector((state) => Object.values(state.books.list));
+  const bookLoading = useSelector((state) => state.books.loading);
 
   useEffect(() => {
-    fetchEBooks(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    dispatch(fetchEBooks(id));
+  }, [id, dispatch]);
 
-  if (loading) {
+  if (bookLoading) {
     return <Loader />;
   }
 
@@ -27,8 +29,4 @@ function Genre(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { items: Object.values(state.books.list), loading: state.loading };
-};
-
-export default connect(mapStateToProps, { fetchEBooks })(Genre);
+export default Genre;
