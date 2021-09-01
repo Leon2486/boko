@@ -1,6 +1,6 @@
 import React from "react";
 
-import List from "./List";
+import BookList from "./BookList";
 
 export default function ShowList(props) {
   const { items, title } = props;
@@ -20,7 +20,7 @@ export default function ShowList(props) {
     <div className="container mt-lg">
       {renderTitle()}
       <div className="searchPage">
-        <List items={items} />
+        <BookList items={items} />
       </div>
     </div>
   );

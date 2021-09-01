@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import history from "../../history";
+import history from "../history";
 
 function SearchBar() {
   const [input, setInput] = useState("");

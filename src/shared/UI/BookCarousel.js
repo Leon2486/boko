@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import CartButton from "./CartButton";
+
 export default function BooksDisplay(props) {
   const { books, genreId, title } = props;
   const [carouselRef, setCarouselRef] = useState(null);

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import history from "../../history";
 
-import Itembox from "../main/Itembox";
+import Itembox from "../../shared/UI/Itembox";
 import { bookPurchase } from "../../store/book-action-creator";
 import { cartActions } from "../../store/cartSlice";
 

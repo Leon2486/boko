@@ -1,5 +1,5 @@
 import kobo from "../apis/koboApi";
-import firebase from "../components/firebase";
+import firebase from "../firebase";
 import history from "../history";
 import { bookActions } from "./bookSlice";
 import { errorActions } from "./errorSlice";
@@ -19,7 +19,7 @@ export const fetchMyBook = () => async (dispatch, getState) => {
       dispatch(bookActions.fetchMyBook(book));
     }
   } catch (e) {
-    history.push("/error");
+    // history.push("/error");
     dispatch(errorActions.foundError("can't fetch your book"));
     console.log(e);
   }
@@ -40,7 +40,7 @@ export const bookPurchase = (books) => async (dispatch, getState) => {
   } catch (e) {
     console.log(e);
     dispatch(errorActions.foundError("purchase failed"));
-    history.push("/error");
+    // history.push("/error");
   }
 };
 
@@ -56,7 +56,7 @@ export const fetchGenre = (koboGenreId) => async (dispatch) => {
   } catch (e) {
     console.log(e);
     dispatch(errorActions.foundError("can't fetch book genre"));
-    history.push("/error");
+    // history.push("/error");
   }
 };
 
@@ -78,7 +78,7 @@ export const fetchEBooks = (koboGenreId) => async (dispatch) => {
   } catch (e) {
     console.log(e);
     dispatch(errorActions.foundError("can't fetch books"));
-    history.push("/error");
+    // history.push("/error");
   }
 };
 
@@ -96,7 +96,7 @@ export const fetchEBook = (itemNumber) => async (dispatch) => {
   } catch (e) {
     console.log(e);
     dispatch(errorActions.foundError("can't fetch book"));
-    history.push("/error");
+    // history.push("/error");
   }
 };
 
@@ -115,7 +115,7 @@ export const fetchSearch = (title) => async (dispatch) => {
     dispatch(bookActions.fetchSearch(itemList));
     dispatch(bookActions.loadingEnd());
   } catch (e) {
-    history.push("/error");
+    // history.push("/error");
     dispatch(errorActions.foundError("can't search books"));
     console.log(e);
   }

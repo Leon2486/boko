@@ -2,10 +2,10 @@ import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import history from "../../history";
+import history from "../history";
 
-import Itembox from "../main/Itembox";
-import { cartActions } from "../../store/cartSlice";
+import Itembox from "../shared/UI/Itembox";
+import { cartActions } from "../store/cartSlice";
 
 function NavbarCart() {
   const dispatch = useDispatch();

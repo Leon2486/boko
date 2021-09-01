@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import NavbarDetail from "./NavbarDetail";
+import NavbarDetail from "./GenreList";
 import SearchBar from "./SearchBar";
-import NavbarCart from "./NavbarCart";
-import GoogleAuth from "../main/GoogleAuth";
+import NavbarCart from "./Cart";
+import GoogleAuth from "../Auth/GoogleAuth";
 
 export default function Navbar() {
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import history from "../../history";
-import CartButton from "./CartButton";
+import CartButton from "../../shared/UI/CartButton";
 import { addItemToCart } from "../../store/cart-action-creator";
 
 function Show(props) {

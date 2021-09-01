@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchGenre } from "../../store/book-action-creator";
+import { fetchGenre } from "../store/book-action-creator";
 
 function NavbarDetail(props) {
   const dispatch = useDispatch();

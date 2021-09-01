@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import CartButton from "../main/CartButton";
+import CartButton from "../../shared/UI/CartButton";
 
 function Mybook() {
   const mybooks = useSelector((state) => Object.values(state.books.mybooks));

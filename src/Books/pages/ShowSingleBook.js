@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchEBook } from "../../store/book-action-creator";
-import Show from "../main/Show";
+import Show from "../components/ShowBook";
 
 function ShowItem(props) {
   const dispatch = useDispatch();

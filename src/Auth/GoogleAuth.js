@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { authActions } from "../../store/authSlice";
-import NavbarUser from "../Navbar/NavbarUser";
+import { authActions } from "../store/authSlice";
+import NavbarUser from "../Navigation/UserNavigation";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;

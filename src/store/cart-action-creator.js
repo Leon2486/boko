@@ -1,4 +1,4 @@
-import firebase from "../components/firebase";
+import firebase from "../firebase";
 import { cartActions } from "./cartSlice";
 import { errorActions } from "./errorSlice";
 

@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchSearch } from "../../store/book-action-creator";
-import ShowList from "../main/ShowList";
-import Loader from "../main/Loader";
+import ShowList from "../components/ShowList";
+import Loader from "../../shared/UI/Loader";
 
 function ShowSearch(props) {
   const dispatch = useDispatch();

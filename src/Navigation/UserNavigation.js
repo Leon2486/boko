@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import NavbarPopup from "./NavbarPopup";
-import { cartActions } from "../../store/cartSlice";
+import NavbarPopup from "./UserNavigationPopUp";
+import { cartActions } from "../store/cartSlice";
 
 function NavbarUser({ onSignedOutClick }) {
   const [popUpDisplay, setPopUpDisplay] = useState(false);

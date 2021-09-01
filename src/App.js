@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import { Router, Route } from "react-router-dom";
-import history from "../history";
+import history from "./history";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchMyBook } from "../store/book-action-creator";
-import { fetchCartData } from "../store/cart-action-creator";
+import { fetchMyBook } from "./store/book-action-creator";
+import { fetchCartData } from "./store/cart-action-creator";
 
-import Navbar from "./Navbar/Navbar";
-import Home from "./pages/Home";
-import ShowSearch from "./pages/ShowSearch";
-import ShowGenre from "./pages/ShowGenre";
-import ShowItem from "./pages/ShowItem";
-import CheckOut from "./pages/CheckOut";
-import Mybook from "./pages/Mybook";
-import ErrorPage from "./pages/ErrorPage";
+import Navbar from "./Navigation/MainNavigation";
+import Home from "./Books/pages/Home";
+import ShowGenre from "./Books/pages/ShowGenreBooks";
+import ShowSearch from "./Books/pages/ShowSearchBooks";
+import ShowItem from "./Books/pages/ShowSingleBook";
+
+import CheckOut from "./purchase/pages/CheckOut";
+import Mybook from "./Users/pages/Mybook";
+//import ErrorPage from "./components/pages/ErrorPage";
 import Footer from "./footer/Footer";
-import Modal from "./main/Modal";
+import Modal from "./shared/UI/Modal";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function App() {
           <Route path="/show/:id" exact component={ShowItem} />
           <Route path="/checkout" exact component={CheckOut} />
           <Route path="/mybook" exact component={Mybook} />
-          <Route path="/error" exact component={ErrorPage} />
+          {/* <Route path="/error" exact component={ErrorPage} /> */}
         </main>
         <Modal />
         <Footer />
