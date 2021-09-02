@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import BookDisplay from "../../shared/UI/BookCarousel";
+import BookCarousel from "../components/BookCarousel";
 import { fetchEBooks } from "../../store/book-action-creator";
 import {
   addItemToCart,
@@ -19,27 +19,25 @@ function Home(props) {
     dispatch(fetchEBooks(101901005));
   }, [dispatch]);
 
-  if (bookLoading) {
-    return <Loader />;
-  }
+  if (bookLoading) return <Loader />;
 
-  if (books) {
-    return (
-      <div className="container mt-lg">
-        <BookDisplay
-          books={books}
-          title="best seller"
-          addCart={addItemToCart}
-          buttonText="add to cart"
-          genreId={101901005}
-          removeCart={removeItemFromCart}
-          cartItem={cartItem}
-        />
-      </div>
-    );
-  }
-
-  return null;
+  return (
+    <>
+      {books && (
+        <div className="container mt-lg">
+          <BookCarousel
+            books={books}
+            title="best seller"
+            addCart={addItemToCart}
+            buttonText="add to cart"
+            genreId={101901005}
+            removeCart={removeItemFromCart}
+            cartItem={cartItem}
+          />
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Home;

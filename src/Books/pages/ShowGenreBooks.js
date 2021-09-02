@@ -2,7 +2,7 @@ import React, { useEffect, Suspense } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchEBooks } from "../../store/book-action-creator";
-import ShowList from "../components/ShowList";
+import BookList from "../components/BookList";
 import Loader from "../../shared/UI/Loader";
 
 function Genre(props) {
@@ -21,10 +21,8 @@ function Genre(props) {
   }
 
   return (
-    <div>
-      <Suspense>
-        <ShowList items={items} />
-      </Suspense>
+    <div className="container mt-lg">
+      <BookList items={items} />
     </div>
   );
 }

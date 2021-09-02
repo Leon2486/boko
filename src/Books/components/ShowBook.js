@@ -1,37 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import history from "../../history";
 import CartButton from "../../shared/UI/CartButton";
-import { addItemToCart } from "../../store/cart-action-creator";
 
 function Show(props) {
-  const dispatch = useDispatch();
-  const mybooks = useSelector((state) => state.books.mybooks);
-  const isSignedIn = useSelector((state) => state.auth.isSignedIn);
-  const { item } = props;
+  const { item, mybooks, isSignedIn, onPurchaseClicked } = props;
 
   const [itemExpand, setItemExpand] = useState(false);
   const [descriptionRef, setDescriptionRef] = useState(null);
   const [showArrow, setShowArrow] = useState(true);
 
-  const desExpand = itemExpand ? "expand" : "";
-  const arrow = itemExpand ? "fa-arrow-up" : "fa-arrow-down";
-
   useEffect(() => {
-    if (descriptionRef && descriptionRef.scrollHeight < 150) {
+    if (descriptionRef && descriptionRef.scrollHeight < 150)
       setShowArrow(false);
-    }
   }, [item, descriptionRef]);
 
-  const onExpandClick = () => {
-    setItemExpand(!itemExpand);
-  };
-
-  const onPurchaseClicked = () => {
-    dispatch(addItemToCart(item));
-    history.push("/checkout");
-  };
+  const onExpandClick = () => setItemExpand(!itemExpand);
 
   const renderPurchase = () => {
     if (!isSignedIn) {
@@ -65,44 +48,38 @@ function Show(props) {
     );
   };
 
-  const renderSeemore = () => {
-    if (showArrow) {
-      return (
-        <div className={`showitem__seemore ${desExpand} mt-md`}>
-          <span></span>
-          <i className={`fas ${arrow}`} onClick={onExpandClick}></i>
-          <span></span>
-        </div>
-      );
-    }
+  const seemore = (
+    <div className={`showitem__seemore ${itemExpand ? "expand" : ""} mt-md`}>
+      <span></span>
+      <i
+        className={`fas ${itemExpand ? "fa-arrow-up" : "fa-arrow-down"}`}
+        onClick={onExpandClick}
+      ></i>
+      <span></span>
+    </div>
+  );
 
-    return null;
-  };
+  if (!item) return null;
 
-  if (item) {
-    return (
-      <div className="showitem">
-        <div className="showitem__img-box">
-          <img src={item.largeImageUrl} alt="" className="showitem__img" />
-        </div>
-        <div className="showitem__detail">
-          <h2 className="heading2 mb-sm">{item.title}</h2>
-          <h3 className="heading3 mb-md">{item.author}</h3>
-          <p
-            className={`showitem__description ${desExpand}`}
-            ref={(ref) => setDescriptionRef(ref)}
-          >
-            {item.itemCaption}
-          </p>
-
-          {renderSeemore()}
-        </div>
-        {renderPurchase()}
+  return (
+    <div className="showitem">
+      <div className="showitem__img-box">
+        <img src={item.largeImageUrl} alt="" className="showitem__img" />
       </div>
-    );
-  }
-
-  return <div class="ui active centered inline loader mt-lg"></div>;
+      <div className="showitem__detail">
+        <h2 className="heading2 mb-sm">{item.title}</h2>
+        <h3 className="heading3 mb-md">{item.author}</h3>
+        <p
+          className={`showitem__description ${itemExpand ? "expand" : ""}`}
+          ref={(ref) => setDescriptionRef(ref)}
+        >
+          {item.itemCaption}
+        </p>
+        {showArrow && seemore}
+      </div>
+      {renderPurchase()}
+    </div>
+  );
 }
 
 export default Show;

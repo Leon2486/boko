@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchSearch } from "../../store/book-action-creator";
-import ShowList from "../components/ShowList";
+import BookList from "../components/BookList";
 import Loader from "../../shared/UI/Loader";
 
 function ShowSearch(props) {
@@ -20,8 +20,9 @@ function ShowSearch(props) {
   }
 
   return (
-    <div>
-      <ShowList items={items} title={title} />
+    <div className="container mt-lg">
+      <h2 className="heading2 mb-lg">search result of "{title}"</h2>
+      <BookList items={items} />
     </div>
   );
 }
