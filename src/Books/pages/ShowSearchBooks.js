@@ -7,7 +7,7 @@ import Loader from "../../shared/UI/Loader";
 
 function ShowSearch(props) {
   const dispatch = useDispatch();
-  const items = useSelector((state) => Object.values(state.books.list));
+  const items = useSelector((state) => state.books.list);
   const title = new URLSearchParams(props.location.search).get("title");
   const bookLoading = useSelector((state) => state.books.loading);
 
@@ -21,8 +21,14 @@ function ShowSearch(props) {
 
   return (
     <div className="container mt-lg">
-      <h2 className="heading2 mb-lg">search result of "{title}"</h2>
-      <BookList items={items} />
+      {items.length === 0 ? (
+        <h2 className="heading2 mb-lg">no result found QQ</h2>
+      ) : (
+        <>
+          <h2 className="heading2 mb-lg">search result of "{title}"</h2>
+          <BookList items={items} />
+        </>
+      )}
     </div>
   );
 }
