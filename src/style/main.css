@@ -585,6 +585,8 @@ body {
 
 .navbar__detail-genre {
   color: #000; }
+  .navbar__detail-genre.active {
+    color: #bf0000; }
   .navbar__detail-genre:hover {
     color: #bf0000; }
 

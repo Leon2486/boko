@@ -168,6 +168,10 @@
   &__detail-genre {
     color: $color-dark;
 
+    &.active {
+      color: $color-primary;
+    }
+
     &:hover {
       color: $color-primary;
     }

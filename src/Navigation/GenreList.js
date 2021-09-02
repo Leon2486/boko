@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { fetchGenre } from "../store/book-action-creator";
 
@@ -17,12 +17,12 @@ function NavbarDetail(props) {
       return genres.map(({ child }) => {
         return (
           <li className="navbar__detail-item" key={child.koboGenreId}>
-            <Link
+            <NavLink
               to={`/genre/${child.koboGenreId}`}
               className="navbar__detail-genre"
             >
               {child.koboGenreName}
-            </Link>
+            </NavLink>
           </li>
         );
       });
